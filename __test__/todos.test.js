@@ -9,7 +9,7 @@ beforeAll(async () => {
   try {
     // create user & get token
     const user = await User.create({
-      email: "test@mail.com",
+      email: "testing@mail.com",
       password: "rahasia",
     });
 

@@ -1,12 +1,9 @@
-# base image
 FROM node:22
 
 WORKDIR /app
 
-ENV PORT=3000
-
-COPY . .
+COPY package*.json ./
 
 RUN npm i
 
-CMD [ "node", "--watch", "server.js" ]
+CMD [ "npm", "start"]

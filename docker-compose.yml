@@ -3,7 +3,7 @@ version: '3.9'
 services:
   app:
     build: .
-    container_name: sesi-14
+    container_name: app
     restart: always
     environment:
       - JWT_SECRET=rahasia
@@ -19,10 +19,10 @@ services:
       - /app/node_modules
     depends_on:
       - db
-    command: npx sequelize db:create && npx sequelize db:migrate
   
   db:
     image: postgres:16
+    container_name: db
     restart: always
     ports:
       - 54321:5432
