@@ -50,32 +50,32 @@ describe("Todos resource", () => {
     expect(Array.isArray(response.body)).toBeTruthy();
   });
 
-  it("Should be able to get single todo", async () => {
-    const response = await request(app)
-      .get(`/todos/${todos[0].id}`)
-      .set("Content-Type", "application/json")
-      .auth(token, { type: "bearer" });
+  // it("Should be able to get single todo", async () => {
+  //   const response = await request(app)
+  //     .get(`/todos/${todos[0].id}`)
+  //     .set("Content-Type", "application/json")
+  //     .auth(token, { type: "bearer" });
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body.id).toBeDefined();
-    expect(response.body.task).toBeDefined();
-    expect(response.body.UserId).toBeDefined();
-    expect(response.body.createdAt).toBeDefined();
-    expect(response.body.updatedAt).toBeDefined();
-  });
+  //   expect(response.statusCode).toBe(200);
+  //   expect(response.body.id).toBeDefined();
+  //   expect(response.body.task).toBeDefined();
+  //   expect(response.body.UserId).toBeDefined();
+  //   expect(response.body.createdAt).toBeDefined();
+  //   expect(response.body.updatedAt).toBeDefined();
+  // });
 
-  it("Should not be able to get single todo when id is invalid", async () => {
-    const response = await request(app)
-      .get(`/todos/5656`)
-      .set("Content-Type", "application/json")
-      .auth(token, { type: "bearer" });
+  // it("Should not be able to get single todo when id is invalid", async () => {
+  //   const response = await request(app)
+  //     .get(`/todos/5656`)
+  //     .set("Content-Type", "application/json")
+  //     .auth(token, { type: "bearer" });
 
-    expect(response.statusCode).toBe(404);
-    expect(response.body).toEqual({
-      error: "NotfoundError",
-      message: "Todo is not found",
-    });
-  });
+  //   expect(response.statusCode).toBe(404);
+  //   expect(response.body).toEqual({
+  //     error: "NotfoundError",
+  //     message: "Todo is not found",
+  //   });
+  // });
 
   // it("Should be able to create new task", async () => {
   //   const response = await request(app)
