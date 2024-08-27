@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   JWT_SECRET: rahasia
@@ -19,7 +19,6 @@ env:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
 
     services:
@@ -36,17 +35,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name : Install package
-      run: npm install
-    - name: Create database
-      run: npx sequelize db:create --env test
-    - name: Migration
-      run: npx sequelize db:migrate --env test
-    - name: Testing
-      run: npm test
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install package
+        run: npm install
+      - name: Create database
+        run: npx sequelize db:create --env test
+      - name: Migration
+        run: npx sequelize db:migrate --env test
+      - name: Testing
+        run: npm test
