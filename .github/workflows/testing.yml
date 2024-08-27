@@ -21,13 +21,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    # services:
-    #   db:
-    #     image: postgres:16
-    #     ports:
-    #       - 5432:5432
-    #     env:
-    #       POSTGRES_PASSWORD: postgres
+    services:
+      db:
+        image: postgres:16
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
 
     strategy:
       matrix:
@@ -43,9 +43,9 @@ jobs:
           cache: "npm"
       - name: Install package
         run: npm install
-      # - name: Create database
-      #   run: npx sequelize db:create --env test
-      # - name: Migration
-      #   run: npx sequelize db:migrate --env test
-      # - name: Testing
-      #   run: npm test
+      - name: Create database
+        run: npx sequelize db:create --env test
+      - name: Migration
+        run: npx sequelize db:migrate --env test
+      - name: Testing
+        run: npm test
