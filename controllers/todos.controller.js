@@ -5,11 +5,7 @@ const { Todo, User } = require("../models");
 exports.index = async (req, res, next) => {
   try {
     const todos = await Todo.findAll({
-      attributes: ["task"],
-      include: {
-        model: User,
-        attributes: ["name"],
-      },
+      include: { model: User },
     });
 
     res.status(200).json(todos);

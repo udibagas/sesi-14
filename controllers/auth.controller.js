@@ -46,11 +46,11 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      throw new UnauthenticatedError("Unauthenticated");
+      throw new UnauthenticatedError("Invalid email or password");
     }
 
     if (!user.verify(password)) {
-      throw new UnauthenticatedError("Unauthenticated");
+      throw new UnauthenticatedError("Invalid email or password");
     }
 
     const token = user.generateToken();

@@ -40,7 +40,7 @@ describe("Authentication test", () => {
       .send({ email: "test-invalid@mail.com", password: "rahasia" });
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.error).toBe("Unauthenticated");
+    expect(response.body.error).toBe("UnauthenticatedError");
     expect(response.body.message).toBe("Invalid email or password");
   });
 
@@ -51,7 +51,7 @@ describe("Authentication test", () => {
       .send({ email: "test@mail.com", password: "rahasiaaaa" });
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.error).toBe("Unauthenticated");
+    expect(response.body.error).toBe("UnauthenticatedError");
     expect(response.body.message).toBe("Invalid email or password");
   });
 });

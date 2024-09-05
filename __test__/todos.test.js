@@ -37,7 +37,7 @@ describe("Todos resource", () => {
       .set("Content-Type", "application/json");
 
     expect(response.statusCode).toBe(401);
-    expect(response.body.error).toBe("Unauthenticated");
+    expect(response.body.error).toBe("UnauthenticatedError");
   });
 
   it("Should be able to get all todos", async () => {
