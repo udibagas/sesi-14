@@ -26,11 +26,6 @@ exports.show = async (req, res, next) => {
   try {
     const todo = await Todo.findByPk(id, {
       where: condition,
-      attributes: ["task"],
-      include: {
-        model: User,
-        attributes: ["name"],
-      },
     });
 
     if (!todo) throw new NotfoundError();
@@ -43,11 +38,42 @@ exports.show = async (req, res, next) => {
 
 exports.create = async (req, res, next) => {
   const { task } = req.body;
-  const UserId = req.user.id; // ambil dari token
+  const UserId = req.user.id;
   try {
     const todo = await Todo.create({ task, UserId });
     res.status(201).json(todo);
   } catch (error) {
+    next(error);
+  }
+};
+
+exports.update = async (req, res, next) => {
+  const { id } = req.params;
+  const { task } = req.body;
+  const UserId = req.user.id;
+
+  try {
+    const todo = await Todo.findByPk(id, { where: { UserId } });
+    await todo.update({ task });
+    if (!todo) throw new NotfoundError();
+    res.status(200).json(todo);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.remove = async (req, res, next) => {
+  const { id } = req.params;
+  const UserId = req.user.id;
+
+  try {
+    const todo = await Todo.findByPk(id, { where: { UserId } });
+    await todo.destroy();
+    if (!todo) throw new NotfoundError();
+    res.status(200).json({ message: "Task has been deleted" });
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };

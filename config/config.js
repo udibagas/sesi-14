@@ -11,12 +11,12 @@ module.exports = {
     port: DB_PORT || 5432,
   },
   test: {
-    username: DB_USER || "postgres",
-    password: DB_PASS || "postgres",
-    database: DB_NAME || "todo_app_test",
+    username: "postgres",
+    password: "postgres",
+    database: "todo_app_test",
     host: "localhost",
     dialect: "postgres",
-    port: DB_PORT || 5432,
+    port: 5432,
     logging: false,
   },
   production: {
